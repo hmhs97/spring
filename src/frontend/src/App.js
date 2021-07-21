@@ -199,7 +199,9 @@ const renderStudents=()=>{
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>by HMHS ©2022
-
+<Divider>
+    <a href="https://systemlk.com">Click Here</a>
+</Divider>
             </Footer>
         </Layout>
     </Layout>
