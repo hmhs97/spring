@@ -84,7 +84,7 @@ jobs:
           git config user.email github-actions@github.com
           git add elasticbeanstalk/docker-compose.yml
           git commit -m "new app version: ${BUILD_NUMBER}"
-          git push
+          git push -f
 
       - uses: 8398a7/action-slack@v3
         with:
