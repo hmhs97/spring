@@ -63,8 +63,7 @@ jobs:
 
       - name: Maven Clean Package and Push to Dockerhub
         run: |
-          ./mvnw --no-transfer-progress clean package \
-            -P build-frontend \
+          mvnw --no-transfer-progress clean package -P build-frontend \
             -P jib-push-to-dockerhub \
               -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
       - uses: 8398a7/action-slack@v3
@@ -109,7 +108,7 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          text: ':tada: :arrow_right: http://Testspring-env.eba-dzqhwpav.eu-central-1.elasticbeanstalk.com'
+          text: ':tada: :arrow_right: https://Testspring-env.eba-dzqhwpav.eu-central-1.elasticbeanstalk.com'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
