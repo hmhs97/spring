@@ -14,7 +14,7 @@
 	<name>spring</name>
 	<description>Spring Boot</description>
 	<properties>
-		<java.version>1.15</java.version>
+		<java.version>15</java.version>
 		<app.image.name>
 			springboot-react-fullstack
 		</app.image.name>
@@ -71,7 +71,7 @@
 				<version>2.5.2</version>
 				<configuration>
 					<from>
-						<image>openjdk:1.15</image>
+						<image>openjdk:15</image>
 					</from>
 					<container>
 						<ports>
@@ -97,7 +97,7 @@
 					<version>2.5.2</version>
 					<configuration>
 											<from>
-												<image>openjdk:1.15</image>
+												<image>openjdk:15</image>
 											</from>
 						<to>
 							<image>docker.io/hmhs97/${app.image.name}:${app.image.tag}</image>
@@ -152,7 +152,7 @@
 					<version>2.5.2</version>
 					<configuration>
 											<from>
-												<image>openjdk:1.15</image>
+												<image>openjdk:15</image>
 											</from>
 						<to>
 							<image>hmhs97/${app.image.name}:${app.image.tag}</image>
