@@ -11,7 +11,7 @@ env:
   POSTGRESQL_DB: erc
   POSTGRESQL_USER: postgres
   POSTGRESQL_PASSWORD: 7894
-  JAVA_VERSION: 1.8
+  JAVA_VERSION: 1.15
 
 jobs:
   build:
