@@ -11,7 +11,7 @@ env:
   POSTGRESQL_DB: erc
   POSTGRESQL_USER: postgres
   POSTGRESQL_PASSWORD: 7894
-  JAVA_VERSION: 1.8
+  JAVA_VERSION: 1.11
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
           POSTGRES_USER: ${{ env.POSTGRESQL_USER }}
           POSTGRES_PASSWORD: ${{ env.POSTGRESQL_PASSWORD }}
         ports:
-          - 5433:5432
+          - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v2
@@ -33,4 +33,4 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
       - name: Maven Clean Package
         run: |
-          ./mvnw --no-transfer-progress clean package -P build-frontend
+          ./mvnw clean package -P build-frontend
