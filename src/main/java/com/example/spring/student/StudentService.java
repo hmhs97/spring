@@ -5,6 +5,7 @@ import com.example.spring.student.exception.StudentNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @AllArgsConstructor
@@ -29,5 +30,14 @@ public class StudentService {
             throw new StudentNotFoundException("Student Not Found!");
         }
         studentRepository.deleteById(studentId);
+    }
+
+    @Transactional
+    public void updateStudent(Long studentId, String name, Gender gender) {
+     Student student=  studentRepository.findById(studentId).orElseThrow(()->new IllegalStateException(
+               "Student Not Found toUpdate!"
+        ));
+        student.setName(name);
+        student.setGender(gender);
     }
 }

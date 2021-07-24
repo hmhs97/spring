@@ -25,8 +25,10 @@ import {
 import './App.css';
 import StudentDrawerForm from "./StudentDrawerForm";
 import {errorNotification, successNotification} from "./Notification";
+import StudentDrawerForm2 from "./StudentDrawerForm2";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+
 const TheAvatar=({name})=>{
     let trim=name.trim();
     if(trim.length===0){
@@ -46,7 +48,11 @@ const removeStudents=(studentId,callback)=>{
         errorNotification("Cant Delete",err.message);
     })
 }
-const columns=fetchStudents=>[
+
+
+
+const columns=(fetchStudents,showDrawer2,setShowDrawer2)=>[
+
     {
         title: '',
         dataIndex: 'avatar',
@@ -62,6 +68,11 @@ const columns=fetchStudents=>[
         title:'Name',
         dataIndex:'name',
         key:'name',
+    },
+    {
+        title:'Email',
+        dataIndex:'email',
+        key:'email',
     },
     {
         title:'Gender',
@@ -84,7 +95,24 @@ const columns=fetchStudents=>[
         >
                 <Radio.Button value="small">Delete</Radio.Button>
         </Popconfirm>
-                <Radio.Button value="small">Edit</Radio.Button>
+                {/*<Popconfirm*/}
+                {/*placement='topRight'*/}
+                {/*title={`Are you sure to edit ${student.name}`}*/}
+                {/*onConfirm={()=>setShowDrawer2(!showDrawer2)}*/}
+                {/*okText="Yes"*/}
+                {/*cancelText="No"*/}
+
+                {/*>*/}
+
+                <Radio.Button value="small" onClick={()=>setShowDrawer2(!showDrawer2)}>Edit</Radio.Button>
+                    <StudentDrawerForm2
+                        showDrawer2={showDrawer2}
+                        setShowDrawer2={setShowDrawer2}
+                        fetchStudents={fetchStudents}
+                        students={student}
+
+                    />
+                {/*</Popconfirm>*/}
             </Radio.Group>
     },
 
@@ -95,6 +123,7 @@ function App() {
     const [collapsed,setCollapsed]=useState(false);
     const [fetching,setFetching]=useState(true);
     const [showDrawer, setShowDrawer] = useState(false);
+    const [showDrawer2, setShowDrawer2] = useState(false);
 
     const fetchStudents = () =>
         getAllStudent().then(
@@ -137,13 +166,20 @@ const renderStudents=()=>{
         </>
     }
     return <>
+        {/*<StudentDrawerForm2*/}
+        {/*    showDrawer2={showDrawer2}*/}
+        {/*    setDrawer2={setShowDrawer2}*/}
+        {/*    fetchStudents={fetchStudents}*/}
+
+        {/*/>*/}
         <StudentDrawerForm
             showDrawer={showDrawer}
             setShowDrawer={setShowDrawer}
             fetchStudents={fetchStudents}
         />
+
     <Table dataSource={students}
-           columns={columns(fetchStudents)}
+           columns={columns(fetchStudents,showDrawer2,setShowDrawer2)}
     bordered
                   title={()=>
                       <>

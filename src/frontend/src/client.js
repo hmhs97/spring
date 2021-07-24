@@ -6,7 +6,7 @@ const checkStatus =response=>{
     }
     const error =new Error(response.statusText);
     error.response=response;
-    return Promise.reject(error);
+    return Promise.reject(error.message);
 }
 export const getAllStudent=()=>fetch(
     "api/v1/students"
@@ -25,4 +25,12 @@ export const deleteStudent=studentId=>
     fetch(`api/v1/students/${studentId}`,{
         method:'DELETE'
     }).then(checkStatus)
+
+export const updateStudent=(studentId,name,gender)=>
+    fetch(`api/v1/students/${studentId}?name=${name}&gender=${gender}`,{
+        headers:{'Content-Type':'application/json'},
+        method:'PUT'
+
+        }
+    ).then(checkStatus)
 
